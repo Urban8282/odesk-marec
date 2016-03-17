@@ -11,6 +11,7 @@
         <th>Sporočilo</th>
 		<th>Pošiljatelj</th>
 		<th>Zadeva</th>
+		<th>Datoteka</th>
 		<th>Izbriši sporočilo</th>
        
     </tr>
@@ -37,6 +38,7 @@ $user_id = $_SESSION['user_id'];
                 echo "<td><a href='poglej_sporocilo.php?id=" .$row['id']."'>Poglej sporočilo</a></td>";
 				 echo '<td>'.$row['posiljatelj'].'</td>';
 				  echo '<td>'.$row['zadeva'].'</td>';
+				   echo '<td>'.$row['datoteka'].'</td>';
 				  echo "<td><a href='zbrisi_sporocilo.php?id=" .$row['id']."'>Izbriši sporočilo.</a></td>";
 				   
 

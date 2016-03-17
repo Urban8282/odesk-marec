@@ -61,6 +61,8 @@
   Sporočilo:<br>
   <textarea name="sporocilo" rows="14" cols="69"></textarea><br><br>
    <p align="middle">
+       <input type="file" name="datoteka" /><br />
+    
   <input type="submit" value="Pošlji sporočilo" />
 </p>
   </div> 

@@ -11,9 +11,10 @@
    $posiljatelj =$_POST['posiljatelj'];
    $prejemnik =$_POST['prejemnik'];
    $sporocilo=$_POST['sporocilo'];
+   $datoteka=$_POST['datoteka'];
   
-     $query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo)
-				VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo');";
+     $query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo,datoteka)
+				VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo','$datoteka');";
      mysqli_query($link, $query);
 
   ?>

@@ -3,9 +3,9 @@
 -- http://www.phpmyadmin.net
 --
 -- Gostitelj: 127.0.0.1
--- Čas nastanka: 16. mar 2016 ob 16.40
+-- Čas nastanka: 17. mar 2016 ob 11.44
 -- Različica strežnika: 10.1.10-MariaDB
--- Različica PHP: 7.0.4
+-- Različica PHP: 7.0.2
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET time_zone = "+00:00";
@@ -19,8 +19,6 @@ SET time_zone = "+00:00";
 --
 -- Zbirka podatkov: `odesk`
 --
-CREATE DATABASE IF NOT EXISTS `odesk` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
-USE `odesk`;
 
 -- --------------------------------------------------------
 
@@ -131,17 +129,21 @@ CREATE TABLE `sporocila` (
   `zadeva` varchar(255) CHARACTER SET utf8 COLLATE utf8_bin DEFAULT NULL,
   `sporocilo` text NOT NULL,
   `soprejemniki` varchar(255) DEFAULT NULL,
-  `prebrano` tinyint(1) NOT NULL DEFAULT '0'
+  `prebrano` tinyint(1) NOT NULL DEFAULT '0',
+  `datoteka` varchar(255) CHARACTER SET ucs2 COLLATE ucs2_slovenian_ci NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COMMENT='Tukaj bodo sporočila';
 
 --
 -- Odloži podatke za tabelo `sporocila`
 --
 
-INSERT INTO `sporocila` (`id`, `prejemnik`, `posiljatelj`, `zadeva`, `sporocilo`, `soprejemniki`, `prebrano`) VALUES
-(1, 'sdfgsd', '', 'gsdsd', 'gsdsdsdg', NULL, 0),
-(2, 'sdgsdgsdgsd', 'urban.kocnik@gmail.com', 'gsdsdgsdgsd', 'urban', NULL, 0),
-(6, 'kr neki', 'urban.kocnik@gmail.com', 'sgsdfgds', 'sgdsdsdg', NULL, 0);
+INSERT INTO `sporocila` (`id`, `prejemnik`, `posiljatelj`, `zadeva`, `sporocilo`, `soprejemniki`, `prebrano`, `datoteka`) VALUES
+(1, 'sdfgsd', '', 'gsdsd', 'gsdsdsdg', NULL, 0, ''),
+(2, 'sdgsdgsdgsd', 'urban.kocnik@gmail.com', 'gsdsdgsdgsd', 'urban', NULL, 0, ''),
+(6, 'kr neki', 'urban.kocnik@gmail.com', 'sgsdfgds', 'sgdsdsdg', NULL, 0, ''),
+(8, 'urban.kocnik@gmail.com', 'urban.kocnik@gmail.com', 'sgd', 'tzi', NULL, 1, ''),
+(9, 'urban.kocnik@gmail.com', 'urban.kocnik@gmail.com', 'jjgfj', 'jjjjsdf', NULL, 1, ''),
+(10, 'urban.kocnik@gmail.com', 'urban.kocnik@gmail.com', 'gs', 'dggdfhdf', NULL, 1, '20150226054748224Koala.jpg');
 
 -- --------------------------------------------------------
 
@@ -257,7 +259,7 @@ ALTER TABLE `skills_users`
 -- AUTO_INCREMENT tabele `sporocila`
 --
 ALTER TABLE `sporocila`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
 --
 -- AUTO_INCREMENT tabele `users`
 --
