@@ -64,22 +64,10 @@ include_once 'session.php';
 	<?php
 	include_once 'database.php';
 	
-	$email = $_SESSION['email'];
+	$neprebranih=0;
 	
-						$query = "SELECT id FROM sporocila WHERE (prebrano = 0) AND (prejemnik = '$email');";
-					
-        //pošljemo ukaz v bazo in shranimo rezultat
-        $result = mysqli_query($link, $query);
-        
-		$neprebranih=0;
-		
-        while($row = mysqli_fetch_array($result)) {
-			
-           $neprebranih ++;
-		}
 		?>
-                        <li><a href="sporocila_meni.php" class="current"><span></span>Sporočila (<?php echo $neprebranih; ?>)</a></li>
-                        <?php
+		<?php
                         if (isset($_SESSION['user_id'])) {
                             ?>
                             <li><a href="logout.php"><span></span>Odjava</a></li>
@@ -87,6 +75,21 @@ include_once 'session.php';
                                     <?php echo $_SESSION['first_name'] . ' ' . $_SESSION['last_name']; ?>
                                 </a></li>
                             <?php
+							
+							$email = $_SESSION['email'];
+	
+						$query = "SELECT id FROM sporocila WHERE (prebrano = 0) AND (prejemnik = '$email');";
+					
+        //pošljemo ukaz v bazo in shranimo rezultat
+        $result = mysqli_query($link, $query);
+        
+		
+		
+        while($row = mysqli_fetch_array($result)) {
+			
+           $neprebranih ++;
+		}
+		
                         } else {
                             ?>                
                             <li><a href="user_add.php"><span></span>Registracija</a></li>
@@ -94,6 +97,9 @@ include_once 'session.php';
                             <?php
                         }
                         ?>
+						
+                        <li><a href="sporocila_meni.php" class="current"><span></span>Sporočila (<?php echo $neprebranih; ?>)</a></li>
+                        
                     </ul>    	
                 </div> <!-- end of tooplate_menu -->
 

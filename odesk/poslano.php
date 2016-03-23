@@ -11,11 +11,45 @@
    $posiljatelj =$_POST['posiljatelj'];
    $prejemnik =$_POST['prejemnik'];
    $sporocilo=$_POST['sporocilo'];
-   $datoteka=$_POST['datoteka'];
-  
-     $query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo,datoteka)
-				VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo','$datoteka');";
-     mysqli_query($link, $query);
+   $target_file;
+   $target_dir = "datoteke/";
+	
+	$random = date('Ymdhis').rand(1,1000);
+	
+	if (isset($_FILES["datoteka"]["name"])) {
+		$target_file = $target_dir.$random.basename($_FILES["datoteka"]["name"]);
+		$uploadOk = 1;
+	} 
+	else  {
+		$uploadOk = 0;
+		$target_file = '';
+	}
+
+	if ($uploadOk == 0) {
+		echo "Sorry, your file was not uploaded.";
+	// if everything is ok, try to upload file
+	} else {
+		if (move_uploaded_file($_FILES["datoteka"]["tmp_name"], 
+								$target_file)) {
+
+		} else {
+			echo "Sorry, there was an error uploading your file.";
+			$uploadOk = 0;
+		}
+	}
+
+	if ($uploadOk == 1) {
+
+		$query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo,datoteka)
+				VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo','$target_file');";
+				
+		 mysqli_query($link, $query);
+	}
+	else {
+		$query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo)
+				VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo');";
+			mysqli_query($link, $query);
+	}
 
   ?>
   </div> 

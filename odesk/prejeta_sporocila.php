@@ -38,12 +38,18 @@ $user_id = $_SESSION['user_id'];
                 echo "<td><a href='poglej_sporocilo.php?id=" .$row['id']."'>Poglej sporočilo</a></td>";
 				 echo '<td>'.$row['posiljatelj'].'</td>';
 				  echo '<td>'.$row['zadeva'].'</td>';
-				   echo '<td>'.$row['datoteka'].'</td>';
+				if (!empty($row['datoteka'])) {
+					echo "<td><a href='download.php?datoteka=".$row['datoteka']."' >Datoteka</a></td>";
+				} else  {
+					echo '<td></td>';
+				}
+
 				  echo "<td><a href='zbrisi_sporocilo.php?id=" .$row['id']."'>Izbriši sporočilo.</a></td>";
 				   
 
             echo '</tr>';
         }
+		
 		
 		
 

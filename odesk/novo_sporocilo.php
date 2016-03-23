@@ -20,7 +20,7 @@
     $user = mysqli_fetch_array($result);
 	?>
 	
-<form action="poslano.php" method="post"> 
+<form action="poslano.php" method="post" enctype="multipart/form-data"> 
   
   <div id="glavnimeni">
   
