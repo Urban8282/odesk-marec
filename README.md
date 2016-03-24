@@ -1,2 +1,0 @@
-# odesk-marec
-odesk končano

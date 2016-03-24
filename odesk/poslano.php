@@ -39,16 +39,26 @@
 	}
 
 	if ($uploadOk == 1) {
+		
+				$query = "SELECT * FROM users";
+$result = mysqli_query($link, $query);
 
+while ($prejemnik = mysqli_fetch_array($result)) {
+		$prejemnik = $row['email'];
 		$query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo,datoteka)
 				VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo','$target_file');";
 				
-		 mysqli_query($link, $query);
+mysqli_query($link, $query); }
 	}
 	else {
-		$query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo)
-				VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo');";
-			mysqli_query($link, $query);
+		$query = "SELECT * FROM users";
+$result = mysqli_query($link, $query);
+
+while ($row = mysqli_fetch_array($result)) {
+	$prejemnik = $row['email'];
+			$query =   "INSERT INTO sporocila (posiljatelj,prejemnik,zadeva,sporocilo)
+						VALUES ('$posiljatelj','$prejemnik','$zadeva','$sporocilo');";
+mysqli_query($link, $query);	}
 	}
 
   ?>
